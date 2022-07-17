@@ -11,16 +11,13 @@ export const App = () => {
   const [value, setValue] = React.useState("");
   const [messages, setMessages] = React.useState<Message[]>([]);
 
-  useEffect(() => {
-    socket.on("messageToClient", (message: string) => {
-      const id = nanoid();
-      const newMessage = {
-        id,
-        message,
-      };
-      setMessages([...messages, newMessage]);
-      // console.log("%cApp.tsx line:10 message: ", "color: #007acc;", message);
-    });
+  socket.on("messageToClient", (message: string) => {
+    const id = nanoid();
+    const newMessage = {
+      id,
+      message,
+    };
+    setMessages([...messages, newMessage]);
   });
 
   const sendWSrequest = () => {
@@ -38,7 +35,7 @@ export const App = () => {
           onChange={(e) => setValue(e.target.value)}
         />
         <button id="app-button" onClick={sendWSrequest}>
-          Click me!
+          Click
         </button>
       </div>
       <ul className="messages">

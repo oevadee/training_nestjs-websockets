@@ -5,7 +5,6 @@ import {
   OnGatewayInit,
   SubscribeMessage,
   WebSocketGateway,
-  WebSocketServer,
   WsResponse,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
@@ -29,7 +28,7 @@ export class ChatGateway
   }
 
   @SubscribeMessage('messageToServer')
-  handleMessage(client: Socket, payload: string): WsResponse<string> {
-    return { event: 'messageToClient', data: payload };
+  handleMessage(client: Socket, message: string): WsResponse<string> {
+    return { event: 'messageToClient', data: message };
   }
 }
