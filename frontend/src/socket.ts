@@ -2,10 +2,8 @@ import { io } from "socket.io-client";
 
 const wsUrl = "http://localhost:80";
 
-const socket = io(wsUrl);
+export const socket = io(wsUrl);
 
-socket.on("messageToClient", (message) => {
-  console.log(message);
+socket.io.on("open", () => {
+  console.log('%csocket.ts "User connected"', "color: #007acc;");
 });
-
-socket.emit("messageToServer", "test");
